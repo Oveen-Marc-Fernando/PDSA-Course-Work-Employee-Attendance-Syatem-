@@ -1,5 +1,5 @@
 package pdsa1;
-impoty java.util.Scanner;
+import java.util.Scanner;
 
 class Node {
         int data;
@@ -102,14 +102,16 @@ class link {
     }
 }
 
-public class EmployeeAttendanceSystem {
 
+public class PDSA1 {
     public static void main(String[] args) {
-
+        
         Scanner scanner = new Scanner(System.in);
+       
+        
         link employeeAttendanceList = new link();
 
-        System.out.print("Enter the number of employees: ");
+            System.out.print("Enter the number of employees: ");
 
         int numberOfEmployees = scanner.nextInt();
 
@@ -147,12 +149,8 @@ public class EmployeeAttendanceSystem {
         employeeAttendanceList.show();
 
         scanner.close();
-    }
-}
-
-public class PDSA1 {
-    public static void main(String[] args) {
-        link doublyLinkedList = new link();
+        
+       /* link doublyLinkedList = new link();
 
        doublyLinkedList.insert(10);
         doublyLinkedList.insert(20);
@@ -174,8 +172,11 @@ public class PDSA1 {
         doublyLinkedList.delete(1);
 
         System.out.println("\nDoubly Linked List after deletion:");
-        doublyLinkedList.show();
+        doublyLinkedList.show();*/
     }
 }
+
+
+
 
 
