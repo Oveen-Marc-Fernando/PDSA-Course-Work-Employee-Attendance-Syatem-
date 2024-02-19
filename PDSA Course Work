@@ -1,0 +1,133 @@
+
+package pdsa1;
+
+
+
+class Node {
+    int data;
+    Node next;
+    Node prev; 
+
+    public Node(int data) {
+        this.data = data;
+        this.next = null;
+        this.prev = null;
+    }
+}
+
+class link {
+    Node head;
+
+    public void insert(int data) {
+        Node node = new Node(data);
+
+        if (head == null) {
+            head = node;
+        } else {
+            Node last = head;
+            while (last.next != null) {
+                last = last.next;
+            }
+            last.next = node;
+            node.prev = last;
+        }
+    }
+
+    public void show() {
+        Node node = head;
+        while (node != null) {
+            System.out.println(node.data);
+            node = node.next;
+        }
+    }
+
+    public void insertAtStart(int data) {
+        Node node = new Node(data);
+        node.next = head;
+        if (head != null) {
+            head.prev = node;
+        }
+        head = node;
+    }
+
+    public void insertAtMiddle(int index, int data) {
+        Node node = new Node(data);
+
+        if (index == 0) {
+            insertAtStart(data);
+        } else {
+            Node current = head;
+            for (int i = 0; i < index - 1 && current != null; i++) {
+                current = current.next;
+            }
+
+            if (current != null) {
+                node.next = current.next;
+                node.prev = current;
+                if (current.next != null) {
+                    current.next.prev = node;
+                }
+                current.next = node;
+            }
+        }
+    }
+
+    public void delete(int index) {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        if (index == 0) {
+            head = head.next;
+            if (head != null) {
+                head.prev = null;
+            }
+        } else {
+            Node current = head;
+            for (int i = 0; i < index && current != null; i++) {
+                current = current.next;
+            }
+
+            if (current != null) {
+                if (current.prev != null) {
+                    current.prev.next = current.next;
+                }
+                if (current.next != null) {
+                    current.next.prev = current.prev;
+                }
+                System.out.println("Value deleted: " + current.data);
+            }
+        }
+    }
+}
+
+public class PDSA1 {
+    public static void main(String[] args) {
+        link doublyLinkedList = new link();
+
+       /* doublyLinkedList.insert(10);
+        doublyLinkedList.insert(20);
+        doublyLinkedList.insert(30);
+
+        System.out.println("Original Doubly Linked List:");
+        doublyLinkedList.show();
+
+        doublyLinkedList.insertAtStart(5);
+
+        System.out.println("\nDoubly Linked List after insertion at start:");
+        doublyLinkedList.show();
+
+        doublyLinkedList.insertAtMiddle(2, 15);
+
+        System.out.println("\nDoubly Linked List after insertion at middle:");
+        doublyLinkedList.show();
+
+        doublyLinkedList.delete(1);
+
+        System.out.println("\nDoubly Linked List after deletion:");
+        doublyLinkedList.show();*/
+    }
+}
+
+
