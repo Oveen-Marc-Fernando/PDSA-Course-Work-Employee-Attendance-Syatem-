@@ -106,7 +106,7 @@ public class PDSA1 {
     public static void main(String[] args) {
         link doublyLinkedList = new link();
 
-       /* doublyLinkedList.insert(10);
+       doublyLinkedList.insert(10);
         doublyLinkedList.insert(20);
         doublyLinkedList.insert(30);
 
@@ -126,7 +126,7 @@ public class PDSA1 {
         doublyLinkedList.delete(1);
 
         System.out.println("\nDoubly Linked List after deletion:");
-        doublyLinkedList.show();*/
+        doublyLinkedList.show();
     }
 }
 
