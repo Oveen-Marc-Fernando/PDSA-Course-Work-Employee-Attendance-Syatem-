@@ -1,7 +1,4 @@
-
 package pdsa1;
-
-
 
 class Node {
     int data;
