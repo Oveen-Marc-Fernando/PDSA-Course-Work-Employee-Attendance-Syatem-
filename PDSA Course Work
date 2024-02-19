@@ -2,31 +2,30 @@ package pdsa1;
 import java.util.Scanner;
 
 class Node {
-        int data;
-        Node next;
-        Node prev; 
+    int data;
+    Node next;
+    Node prev;
 
-        public Node(int data) {
-            this.data = data;
-            this.next = null;
-            this.prev = null;
-        }
+    public Node(int data) {
+        this.data = data;
+        this.next = null;
+        this.prev = null;
     }
+}
 
-class link {
-        Node head;
+class Link {
+    Node head;
 
-        public void insert(int data) {
-            Node node = new Node(data);
+    public void insert(int data) {
+        Node node = new Node(data);
 
-            if (head == null) {
-                head = node;
-            } 
-            else {
-                Node last = head;
+        if (head == null) {
+            head = node;
+        } else {
+            Node last = head;
 
-                while (last.next != null) {
-                    last = last.next;
+            while (last.next != null) {
+                last = last.next;
             }
             last.next = node;
             node.prev = last;
@@ -102,44 +101,47 @@ class link {
     }
 }
 
+class Authentication {
+    Scanner scanner = new Scanner(System.in);
+
+    public boolean authenticate() {
+        String correctUsername1 = "Oveen";
+        String correctPassword1 = "tvbm9035";
+
+        String correctUsername2 = "Vinuja";
+        String correctPassword2 = "123456";
+
+        System.out.print("Enter username: ");
+        String enteredUsername = scanner.nextLine();
+
+        System.out.print("Enter password: ");
+        String enteredPassword = scanner.nextLine();
+
+        return (enteredUsername.equals(correctUsername1) && enteredPassword.equals(correctPassword1)) ||
+                (enteredUsername.equals(correctUsername2) && enteredPassword.equals(correctPassword2));
+    }
+}
+
 public class PDSA1 {
     public static void main(String[] args) {
-               
-        
-        for(int i = 0; i < 5; i++)
-        {
-            Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
+        Link employeeAttendanceList = new Link();
 
-            String correctUsername1 = "Oveen";
-            String correctPassword1 = "tvbm9035";
+        Authentication authentication = new Authentication();
 
-            String correctUsername2 = "Vinuja";
-            String correctPassword2 = "123456";
-
-            System.out.print("Enter username: ");
-            String enteredUsername = scanner.nextLine();
-
-            System.out.print("Enter password: ");
-            String enteredPassword = scanner.nextLine();
-
-            if ((enteredUsername.equals(correctUsername1) && enteredPassword.equals(correctPassword1)) ||
-                (enteredUsername.equals(correctUsername2) && enteredPassword.equals(correctPassword2))) 
-            {
-                System.out.println("Authentication successful. Welcome, " + enteredUsername + "!");
-            
-            
-                link employeeAttendanceList = new link();
+        for (int i = 0; i < 5; i++) {
+            if (authentication.authenticate()) {
+                // Your logic after successful authentication
+                System.out.println("Authentication successful. Welcome!");
 
                 System.out.print("Enter the number of employees: ");
-
                 int numberOfEmployees = scanner.nextInt();
 
-                    for (int l = 0; l < numberOfEmployees; i++) {
-
-                        System.out.print("Enter attendance for employee " + (i + 1) + ": ");
-                        int attendance = scanner.nextInt();
-                        employeeAttendanceList.insert(attendance);
-                     }
+                for (int j = 0; j < numberOfEmployees; j++) {
+                    System.out.print("Enter attendance for employee " + (j + 1) + ": ");
+                    int attendance = scanner.nextInt();
+                    employeeAttendanceList.insert(attendance);
+                }
 
                 System.out.println("Initial Employee Attendance List:");
                 employeeAttendanceList.show();
@@ -166,15 +168,11 @@ public class PDSA1 {
 
                 System.out.println("\nEmployee Attendance List after deletion:");
                 employeeAttendanceList.show();
-
-                scanner.close();
-                
-                }
-            else {
+            } else {
                 System.out.println("Authentication failed. Incorrect username or password.");
-            }        
+            }
         }
+
+        scanner.close();
     }
 }
-
-
