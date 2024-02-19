@@ -3,11 +3,13 @@ import java.util.Scanner;
 
 class Node {
     int data;
+    String name;
     Node next;
     Node prev;
 
-    public Node(int data) {
+    public Node(int data, String name) {
         this.data = data;
+        this.name = name;
         this.next = null;
         this.prev = null;
     }
@@ -16,8 +18,8 @@ class Node {
 class Link {
     Node head;
 
-    public void insert(int data) {
-        Node node = new Node(data);
+    public void insert(int data, String name) {
+        Node node = new Node(data, name);
 
         if (head == null) {
             head = node;
@@ -35,13 +37,14 @@ class Link {
     public void show() {
         Node node = head;
         while (node != null) {
-            System.out.println(node.data);
+            System.out.print(node.data + " ");
+            System.out.println(node.name);
             node = node.next;
         }
     }
 
-    public void insertAtStart(int data) {
-        Node node = new Node(data);
+    public void insertAtStart(int data, String name) {
+        Node node = new Node(data,name);
         node.next = head;
         if (head != null) {
             head.prev = node;
@@ -49,11 +52,11 @@ class Link {
         head = node;
     }
 
-    public void insertAtMiddle(int index, int data) {
-        Node node = new Node(data);
+    public void insertAtMiddle(int index, int data, String name) {
+        Node node = new Node(data,name);
 
         if (index == 0) {
-            insertAtStart(data);
+            insertAtStart(data, name);
         } else {
             Node current = head;
             for (int i = 0; i < index - 1 && current != null; i++) {
@@ -103,8 +106,10 @@ class Link {
 
 class Authentication {
     Scanner scanner = new Scanner(System.in);
+    String enteredUsername;
 
     public boolean authenticate() {
+        
         String correctUsername1 = "Oveen";
         String correctPassword1 = "tvbm9035";
 
@@ -117,8 +122,11 @@ class Authentication {
         System.out.print("Enter password: ");
         String enteredPassword = scanner.nextLine();
 
-        return (enteredUsername.equals(correctUsername1) && enteredPassword.equals(correctPassword1)) ||
-                (enteredUsername.equals(correctUsername2) && enteredPassword.equals(correctPassword2));
+        return ((enteredUsername.equals(correctUsername1) && enteredPassword.equals(correctPassword1)) ||
+                (enteredUsername.equals(correctUsername2) && enteredPassword.equals(correctPassword2)));
+    }
+    public String getEnteredUsername(String x) {
+        return x = enteredUsername;
     }
 }
 
@@ -126,38 +134,65 @@ public class PDSA1 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Link employeeAttendanceList = new Link();
-
         Authentication authentication = new Authentication();
+        String enteredUsername;
+        
+        System.out.println("Employee Details ");
+        
+        employeeAttendanceList.insert(1, "Kasun");
+        employeeAttendanceList.insert(2, "Nipun");
+        employeeAttendanceList.insert(3, "Aravinda");
+        employeeAttendanceList.insert(4, "Nethra");
+        employeeAttendanceList.insert(5, "Ayesh");
+        employeeAttendanceList.insert(6, "Savindu");
+        employeeAttendanceList.insert(7, "Nadith");
+        employeeAttendanceList.insert(8, "Saman");
+        employeeAttendanceList.insert(9, "Nohim");
+        employeeAttendanceList.insert(10, "Kisara");
+        employeeAttendanceList.insert(11, "Binura");
+        employeeAttendanceList.insert(12, "Gimras");
+        employeeAttendanceList.insert(13, "Rasindu");
+        employeeAttendanceList.insert(14, "Indika");
+        employeeAttendanceList.insert(15, "Nuwan");
+        employeeAttendanceList.insert(16, "Asindu");
+        employeeAttendanceList.insert(17, "Thiwanka");
+        employeeAttendanceList.insert(18, "Heshan");
+        employeeAttendanceList.insert(19, "Vihangi");
+        employeeAttendanceList.insert(20, "Rashmika");
+
+        employeeAttendanceList.show();
 
         for (int i = 0; i < 5; i++) {
             if (authentication.authenticate()) {
-                // Your logic after successful authentication
-                System.out.println("Authentication successful. Welcome!");
+              
+               enteredUsername = authentication.getEnteredUsername(x);
+                System.out.println("Authentication successful. Welcome, " +enteredUsername +"!");
 
+                
+                
                 System.out.print("Enter the number of employees: ");
                 int numberOfEmployees = scanner.nextInt();
 
                 for (int j = 0; j < numberOfEmployees; j++) {
+                    scanner.nextLine(); 
+                    System.out.print("Enter name for employee " + (j + 1) + ": ");
+                    String name = scanner.nextLine();
                     System.out.print("Enter attendance for employee " + (j + 1) + ": ");
                     int attendance = scanner.nextInt();
-                    employeeAttendanceList.insert(attendance);
+                    employeeAttendanceList.insert(attendance, name);
                 }
 
-                System.out.println("Initial Employee Attendance List:");
-                employeeAttendanceList.show();
-
-                System.out.print("\nEnter attendance to insert at the start: ");
-                int attendanceAtStart = scanner.nextInt();
-                employeeAttendanceList.insertAtStart(attendanceAtStart);
-
-                System.out.println("\nEmployee Attendance List after insertion at start:");
+                System.out.println("Updated Employee Attendance List:");
                 employeeAttendanceList.show();
 
                 System.out.print("\nEnter index to insert attendance at middle: ");
                 int index = scanner.nextInt();
                 System.out.print("Enter attendance to insert at middle: ");
                 int attendanceAtMiddle = scanner.nextInt();
-                employeeAttendanceList.insertAtMiddle(index, attendanceAtMiddle);
+                scanner.nextLine(); // Consume the newline left by nextInt
+                System.out.print("Enter name for employee: ");
+                String nameAtMiddle = scanner.nextLine();
+                employeeAttendanceList.insertAtMiddle(index, attendanceAtMiddle, nameAtMiddle);
 
                 System.out.println("\nEmployee Attendance List after insertion at middle:");
                 employeeAttendanceList.show();
