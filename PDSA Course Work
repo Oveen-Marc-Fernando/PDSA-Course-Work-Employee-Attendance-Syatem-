@@ -102,81 +102,79 @@ class link {
     }
 }
 
-
 public class PDSA1 {
     public static void main(String[] args) {
+               
         
-        Scanner scanner = new Scanner(System.in);
-       
-        
-        link employeeAttendanceList = new link();
+        for(int i = 0; i < 5; i++)
+        {
+            Scanner scanner = new Scanner(System.in);
 
-            System.out.print("Enter the number of employees: ");
+            String correctUsername1 = "Oveen";
+            String correctPassword1 = "tvbm9035";
 
-        int numberOfEmployees = scanner.nextInt();
+            String correctUsername2 = "Vinuja";
+            String correctPassword2 = "123456";
 
-        for (int i = 0; i < numberOfEmployees; i++) {
+            System.out.print("Enter username: ");
+            String enteredUsername = scanner.nextLine();
 
-            System.out.print("Enter attendance for employee " + (i + 1) + ": ");
-            int attendance = scanner.nextInt();
-            employeeAttendanceList.insert(attendance);
+            System.out.print("Enter password: ");
+            String enteredPassword = scanner.nextLine();
+
+            if ((enteredUsername.equals(correctUsername1) && enteredPassword.equals(correctPassword1)) ||
+                (enteredUsername.equals(correctUsername2) && enteredPassword.equals(correctPassword2))) 
+            {
+                System.out.println("Authentication successful. Welcome, " + enteredUsername + "!");
+            
+            
+                link employeeAttendanceList = new link();
+
+                System.out.print("Enter the number of employees: ");
+
+                int numberOfEmployees = scanner.nextInt();
+
+                    for (int l = 0; l < numberOfEmployees; i++) {
+
+                        System.out.print("Enter attendance for employee " + (i + 1) + ": ");
+                        int attendance = scanner.nextInt();
+                        employeeAttendanceList.insert(attendance);
+                     }
+
+                System.out.println("Initial Employee Attendance List:");
+                employeeAttendanceList.show();
+
+                System.out.print("\nEnter attendance to insert at the start: ");
+                int attendanceAtStart = scanner.nextInt();
+                employeeAttendanceList.insertAtStart(attendanceAtStart);
+
+                System.out.println("\nEmployee Attendance List after insertion at start:");
+                employeeAttendanceList.show();
+
+                System.out.print("\nEnter index to insert attendance at middle: ");
+                int index = scanner.nextInt();
+                System.out.print("Enter attendance to insert at middle: ");
+                int attendanceAtMiddle = scanner.nextInt();
+                employeeAttendanceList.insertAtMiddle(index, attendanceAtMiddle);
+
+                System.out.println("\nEmployee Attendance List after insertion at middle:");
+                employeeAttendanceList.show();
+
+                System.out.print("\nEnter index to delete attendance: ");
+                int deleteIndex = scanner.nextInt();
+                employeeAttendanceList.delete(deleteIndex);
+
+                System.out.println("\nEmployee Attendance List after deletion:");
+                employeeAttendanceList.show();
+
+                scanner.close();
+                
+                }
+            else {
+                System.out.println("Authentication failed. Incorrect username or password.");
+            }        
         }
-
-        System.out.println("Initial Employee Attendance List:");
-        employeeAttendanceList.show();
-
-        System.out.print("\nEnter attendance to insert at the start: ");
-        int attendanceAtStart = scanner.nextInt();
-        employeeAttendanceList.insertAtStart(attendanceAtStart);
-
-        System.out.println("\nEmployee Attendance List after insertion at start:");
-        employeeAttendanceList.show();
-
-        System.out.print("\nEnter index to insert attendance at middle: ");
-        int index = scanner.nextInt();
-        System.out.print("Enter attendance to insert at middle: ");
-        int attendanceAtMiddle = scanner.nextInt();
-        employeeAttendanceList.insertAtMiddle(index, attendanceAtMiddle);
-
-        System.out.println("\nEmployee Attendance List after insertion at middle:");
-        employeeAttendanceList.show();
-
-        System.out.print("\nEnter index to delete attendance: ");
-        int deleteIndex = scanner.nextInt();
-        employeeAttendanceList.delete(deleteIndex);
-
-        System.out.println("\nEmployee Attendance List after deletion:");
-        employeeAttendanceList.show();
-
-        scanner.close();
-        
-       /* link doublyLinkedList = new link();
-
-       doublyLinkedList.insert(10);
-        doublyLinkedList.insert(20);
-        doublyLinkedList.insert(30);
-
-        System.out.println("Original Doubly Linked List:");
-        doublyLinkedList.show();
-
-        doublyLinkedList.insertAtStart(5);
-
-        System.out.println("\nDoubly Linked List after insertion at start:");
-        doublyLinkedList.show();
-
-        doublyLinkedList.insertAtMiddle(2, 15);
-
-        System.out.println("\nDoubly Linked List after insertion at middle:");
-        doublyLinkedList.show();
-
-        doublyLinkedList.delete(1);
-
-        System.out.println("\nDoubly Linked List after deletion:");
-        doublyLinkedList.show();*/
     }
 }
-
-
-
 
 
