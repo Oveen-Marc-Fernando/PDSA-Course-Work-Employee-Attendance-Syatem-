@@ -200,7 +200,6 @@ public class PDSA1 {
                 System.out.println("Authentication failed. Incorrect username or password.");
             }
         }
-
-        scanner.close(); 
+     scanner.close(); 
     }
-    }
+}
