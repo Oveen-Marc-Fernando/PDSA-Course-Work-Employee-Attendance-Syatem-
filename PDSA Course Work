@@ -172,8 +172,8 @@ public class PDSA1 {
                     System.out.println("1: Insert    2: Delete");
                     String type = scanner.next();
 
-                    if (type.equals("Insert") || type.equals("insert")) {
-                        System.out.print("Inserting ID : ");
+                    if (type.equals("Insert") || type.equals("insert") || type.equals("1")) {
+                        System.out.print("Insert employee ID : ");
                         int attendance = scanner.nextInt();
                         scanner.nextLine(); 
 
@@ -183,7 +183,8 @@ public class PDSA1 {
                         employeeAttendanceList.insert(attendance, employeeName);
                         System.out.println("Updated Employee Attendance List:");
                         employeeAttendanceList.Attendance();
-                    } else if (type.equals("Delete") || type.equals("delete")) {
+                        
+                    } else if (type.equals("Delete") || type.equals("delete") || type.equals("2")) {
                         System.out.print("Enter the index to delete: ");
                         int deleteIndex = scanner.nextInt();
                         scanner.nextLine();
@@ -192,6 +193,7 @@ public class PDSA1 {
                         System.out.println("Element at index " + deleteIndex + " deleted.");
                         System.out.println("Updated Employee Attendance List:");
                         employeeAttendanceList.Attendance();
+                        System.out.println("");
                     }
                 }
             } else {
