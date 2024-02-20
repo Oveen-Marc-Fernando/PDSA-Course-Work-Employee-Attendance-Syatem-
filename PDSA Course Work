@@ -43,6 +43,19 @@ class Link {
             node = node.next;
         }
     }
+     public void Attendance() {
+        Node node = head;
+        int index = 1;
+         while (node != null) {
+            if (index > 20) {
+                System.out.print(node.data+" ");
+                System.out.println(node.name);
+            }
+
+            node = node.next;
+            index++;
+        }
+    }
 
     public void insertAtStart(int data, String name) {
         Node node = new Node(data, name);
@@ -107,8 +120,9 @@ class Link {
 
 public class PDSA1 {
     public static void main(String[] args) {
-        
+       
         Scanner scanner = new Scanner(System.in);
+
         Link employeeAttendanceList = new Link();
 
         System.out.println("Employee Details "); 
@@ -135,11 +149,12 @@ public class PDSA1 {
         employeeAttendanceList.show();
 
         
-        for(int i = 0;i< 5 ; i++){
+        
+        for (int i = 0; i < 5; i++) {
             String correctUsername1 = "Oveen";
             String correctPassword1 = "tvbm9035";
 
-            String correctUsername2 = "Vinuja";
+            String correctUsername2 = "vinuja";
             String correctPassword2 = "123456";
 
             System.out.print("Enter username: ");
@@ -147,39 +162,43 @@ public class PDSA1 {
 
             System.out.print("Enter password: ");
             String enteredPassword = scanner.nextLine();
-        
+
             if ((enteredUsername.equals(correctUsername1) && enteredPassword.equals(correctPassword1)) ||
-                (enteredUsername.equals(correctUsername2) && enteredPassword.equals(correctPassword2)))
-                 {
-                     System.out.println("Authentication successful. Welcome, " + enteredUsername + "!");  
-                    
-              System.out.print("Enter the number of employees you want to insert: ");
-              int numberOfEmployees = scanner.nextInt();
+                (enteredUsername.equals(correctUsername2) && enteredPassword.equals(correctPassword2))) {
+                System.out.println("Authentication successful. Welcome, " + enteredUsername + "!");
 
-            
-                
-                int employeeId  = 0;
+                for (int p = 0; p < 5; p++) {
+                    System.out.println("Select option : ");
+                    System.out.println("1: Insert    2: Delete");
+                    String type = scanner.next();
 
-                System.out.print("Inserting ID " + employeeId + ": ");
-                int attendance = scanner.nextInt();
-                scanner.nextLine(); // Consume the newline character left by nextInt()
+                    if (type.equals("Insert") || type.equals("insert")) {
+                        System.out.print("Inserting ID : ");
+                        int attendance = scanner.nextInt();
+                        scanner.nextLine(); 
 
-                System.out.print("Enter employee name: ");
-                String employeeName = scanner.nextLine();
-                
-                // Insert the employee data into the list
-                employeeAttendanceList.insert(attendance, employeeName);
-            
+                        System.out.print("Enter employee name: ");
+                        String employeeName = scanner.nextLine();
 
-            System.out.println("Updated Employee Attendance List:");
-            employeeAttendanceList.show();
-                
+                        employeeAttendanceList.insert(attendance, employeeName);
+                        System.out.println("Updated Employee Attendance List:");
+                        employeeAttendanceList.Attendance();
+                    } else if (type.equals("Delete") || type.equals("delete")) {
+                        System.out.print("Enter the index to delete: ");
+                        int deleteIndex = scanner.nextInt();
+                        scanner.nextLine();
 
-                    scanner.close();  
+                        employeeAttendanceList.delete(deleteIndex - 1);
+                        System.out.println("Element at index " + deleteIndex + " deleted.");
+                        System.out.println("Updated Employee Attendance List:");
+                        employeeAttendanceList.Attendance();
+                    }
                 }
-            else {
-                 System.out.println("Authentication failed. Incorrect username or password.");
-                }
+            } else {
+                System.out.println("Authentication failed. Incorrect username or password.");
+            }
         }
+
+        scanner.close(); 
     }
-}
+    }
