@@ -130,7 +130,7 @@ class EmployeeDetails
         System.out.println("");
 
         System.out.printf("%-60s", " ");
-        System.out.printf("%-18s %-18s%n", "Number", "Name");
+        System.out.printf("%-18s %-18s%n", "EmpId", "Name");
 
         
         for (int i = 0; i < names.length; i++) {
