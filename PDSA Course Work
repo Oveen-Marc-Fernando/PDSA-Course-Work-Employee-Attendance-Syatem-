@@ -37,25 +37,25 @@ class Link {
 
     public void show() {
         Node node = head;
+        int count=1;
+        
+        System.out.print("Number");
+        System.out.print("  ");
+        System.out.print("Employee Id");
+        System.out.print("  ");
+        System.out.println("Names");
         while (node != null) {
-            System.out.print(node.data + "   ");
+            System.out.printf("%-60s", " ");
+            System.out.print(count+ "       ");
+            System.out.print(node.data + "            ");
             System.out.println(node.name);
             node = node.next;
+            count++;
+            
         }
+        
     }
-     public void Attendance() {
-        Node node = head;
-        int index = 1;
-         while (node != null) {
-            if (index > 20) {
-                System.out.print(node.data+" ");
-                System.out.println(node.name);
-            }
-
-            node = node.next;
-            index++;
-        }
-    }
+   
 
     public void insertAtStart(int data, String name) {
         Node node = new Node(data, name);
@@ -118,37 +118,60 @@ class Link {
     }
 }
 
+class EmployeeDetails
+{
+    public void show()
+    {
+         String[] names = {"Kasun", "Nipun", "Aravinda", "Nethra", "Ayesh", "Savindu", "Nadith", "Saman", "Nohim", "Kisara", "Binura", "Gimras", "Rasindu", "Indika", "Nuwan", "Asindu", "Thiwanka", "Heshan", "Rashmika"};
+        int[] numbers = {1001, 2002, 3003, 4004, 5005, 6006, 7007, 8008, 9009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020};
+
+        System.out.printf("%-63s", " ");
+        System.out.println("Employee Details ");
+        System.out.println("");
+
+        System.out.printf("%-60s", " ");
+        System.out.printf("%-18s %-18s%n", "Number", "Name");
+
+        
+        for (int i = 0; i < names.length; i++) {
+            System.out.printf("%-60s", " ");
+            System.out.printf("%-18s %-18s%n", numbers[i], names[i]);
+        }
+        }
+
+}
+
+class Company{
+    
+    public void show()
+    {
+      System.out.printf("%-80s", " ");
+      System.out.println("John Keells private Limited");
+      System.out.println(" ");
+      
+      
+      System.out.printf("%-85s", " ");
+      System.out.println("Attendance sheet");
+      System.out.println(" ");
+      
+      System.out.printf("%-60s", " ");
+      System.out.println("Login");
+            
+    }
+}
+        
+    
+
+
 public class PDSA1 {
     public static void main(String[] args) {
        
         Scanner scanner = new Scanner(System.in);
 
         Link employeeAttendanceList = new Link();
-
-        System.out.println("Employee Details "); 
-        employeeAttendanceList.insert(1, "Kasun");
-        employeeAttendanceList.insert(2, "Nipun");
-        employeeAttendanceList.insert(3, "Aravinda");
-        employeeAttendanceList.insert(4, "Nethra");
-        employeeAttendanceList.insert(5, "Ayesh");
-        employeeAttendanceList.insert(6, "Savindu");
-        employeeAttendanceList.insert(7, "Nadith");
-        employeeAttendanceList.insert(8, "Saman");
-        employeeAttendanceList.insert(9, "Nohim");
-        employeeAttendanceList.insert(10, "Kisara");
-        employeeAttendanceList.insert(11, "Binura");
-        employeeAttendanceList.insert(12, "Gimras");
-        employeeAttendanceList.insert(13, "Rasindu");
-        employeeAttendanceList.insert(14, "Indika");
-        employeeAttendanceList.insert(15, "Nuwan");
-        employeeAttendanceList.insert(16, "Asindu");
-        employeeAttendanceList.insert(17, "Thiwanka");
-        employeeAttendanceList.insert(18, "Heshan");
-        employeeAttendanceList.insert(19, "Vihangi");
-        employeeAttendanceList.insert(20, "Rashmika");
-        employeeAttendanceList.show();
-
-        
+        Company company= new Company();
+        company.show();
+     
         
         for (int i = 0; i < 5; i++) {
             String correctUsername1 = "Oveen";
@@ -157,46 +180,80 @@ public class PDSA1 {
             String correctUsername2 = "vinuja";
             String correctPassword2 = "123456";
 
+            System.out.printf("%-60s", " ");
             System.out.print("Enter username: ");
             String enteredUsername = scanner.nextLine();
 
+            System.out.printf("%-60s", " ");
             System.out.print("Enter password: ");
             String enteredPassword = scanner.nextLine();
 
             if ((enteredUsername.equals(correctUsername1) && enteredPassword.equals(correctPassword1)) ||
                 (enteredUsername.equals(correctUsername2) && enteredPassword.equals(correctPassword2))) {
+                System.out.println("");
+                System.out.printf("%-55s", " ");
                 System.out.println("Authentication successful. Welcome, " + enteredUsername + "!");
+                System.out.println("");
+                EmployeeDetails employee= new EmployeeDetails();
+                employee.show();
+                System.out.println("");
+                
 
                 for (int p = 0; p < 5; p++) {
-                    System.out.println("Select option : ");
+                    System.out.printf("%-50s", " ");
+                    System.out.println("Do you want to : ");
+                    System.out.printf("%-50s", " ");
                     System.out.println("1: Insert    2: Delete");
+                    System.out.printf("%-50s", " ");
+                    System.out.print("Select option:  ");
                     String type = scanner.next();
+                    System.out.printf("%-50s", " ");
 
                     if (type.equals("Insert") || type.equals("insert") || type.equals("1")) {
                         System.out.print("Insert employee ID : ");
                         int attendance = scanner.nextInt();
-                        scanner.nextLine(); 
+                        System.out.printf("%-50s", " ");
+                        scanner.nextLine();
+                        
+                         
 
                         System.out.print("Enter employee name: ");
                         String employeeName = scanner.nextLine();
+                        
 
+                        System.out.printf("%-60s", " ");
                         employeeAttendanceList.insert(attendance, employeeName);
+                        System.out.println("");
+                        System.out.printf("%-58s", " ");
                         System.out.println("Updated Employee Attendance List:");
-                        employeeAttendanceList.Attendance();
+                        System.out.println("");
+                        System.out.printf("%-60s", " ");
+                        employeeAttendanceList.show();
+                        
+                        System.out.println("");
+                        
                         
                     } else if (type.equals("Delete") || type.equals("delete") || type.equals("2")) {
-                        System.out.print("Enter the index to delete: ");
+                        
+                        System.out.print("Enter the number of deletion: ");
                         int deleteIndex = scanner.nextInt();
                         scanner.nextLine();
 
+                        
                         employeeAttendanceList.delete(deleteIndex - 1);
-                        System.out.println("Element at index " + deleteIndex + " deleted.");
+                        System.out.printf("%-50s", " ");
+                        System.out.println("Element of Number " + deleteIndex + " deleted.");
+                        System.out.println("");
+                        System.out.printf("%-58s", " ");
                         System.out.println("Updated Employee Attendance List:");
-                        employeeAttendanceList.Attendance();
+                        System.out.println("");
+                        System.out.printf("%-60s", " ");
+                        employeeAttendanceList.show();
                         System.out.println("");
                     }
                 }
             } else {
+                System.out.printf("%-55s", " ");
                 System.out.println("Authentication failed. Incorrect username or password.");
             }
         }
