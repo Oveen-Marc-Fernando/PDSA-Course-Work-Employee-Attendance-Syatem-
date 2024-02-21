@@ -1,5 +1,6 @@
 package pdsa1;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 class Node {
@@ -50,13 +51,10 @@ class Link {
             System.out.print(node.data + "            ");
             System.out.println(node.name);
             node = node.next;
-            count++;
-            
-        }
-        
+            count++;            
+        }     
     }
    
-
     public void insertAtStart(int data, String name) {
         Node node = new Node(data, name);
         node.next = head;
@@ -131,37 +129,32 @@ class EmployeeDetails
 
         System.out.printf("%-60s", " ");
         System.out.printf("%-18s %-18s%n", "EmpId", "Name");
-
         
         for (int i = 0; i < names.length; i++) {
             System.out.printf("%-60s", " ");
             System.out.printf("%-18s %-18s%n", numbers[i], names[i]);
         }
-        }
-
+    }
 }
 
 class Company{
     
     public void show()
     {
-      System.out.printf("%-80s", " ");
-      System.out.println("John Keells private Limited");
+      System.out.printf("%-55s", " ");
+      System.out.println("********       John Keells Private Limited       ********");
       System.out.println(" ");
       
       
-      System.out.printf("%-85s", " ");
-      System.out.println("Attendance sheet");
+      System.out.printf("%-70s", " ");
+      System.out.println("  **  Attendance sheet **");
       System.out.println(" ");
       
       System.out.printf("%-60s", " ");
       System.out.println("Login");
             
     }
-}
-        
-    
-
+}            
 
 public class PDSA1 {
     public static void main(String[] args) {
@@ -170,8 +163,7 @@ public class PDSA1 {
 
         Link employeeAttendanceList = new Link();
         Company company= new Company();
-        company.show();
-     
+        company.show();    
         
         for (int i = 0; i < 5; i++) {
             String correctUsername1 = "Oveen";
@@ -191,70 +183,85 @@ public class PDSA1 {
             if ((enteredUsername.equals(correctUsername1) && enteredPassword.equals(correctPassword1)) ||
                 (enteredUsername.equals(correctUsername2) && enteredPassword.equals(correctPassword2))) {
                 System.out.println("");
+                
                 long loginStartTime = System.currentTimeMillis();
+                
                 System.out.printf("%-55s", " ");
                 System.out.println("Authentication successful. Welcome, " + enteredUsername + "!");
                 System.out.println("");
                 EmployeeDetails employee= new EmployeeDetails();
                 employee.show();
-                System.out.println("");
-                
+                System.out.println("");               
 
-                for (int p = 0; p < 5; p++) {
-                    System.out.printf("%-50s", " ");
-                    System.out.println("Do you want to : ");
-                    System.out.printf("%-50s", " ");
-                    System.out.println("1: Insert    2: Delete");
-                    System.out.printf("%-50s", " ");
-                    System.out.print("Select option:  ");
-                    String type = scanner.next();
-                    System.out.printf("%-50s", " ");
-
-                    if (type.equals("Insert") || type.equals("insert") || type.equals("1")) {
-                        System.out.print("Insert employee ID : ");
-                        int attendance = scanner.nextInt();
+                 for (int p = 0; p < 10; p++) {
+                    try {
                         System.out.printf("%-50s", " ");
-                        scanner.nextLine();
-                        
-                         
-
-                        System.out.print("Enter employee name: ");
-                        String employeeName = scanner.nextLine();
-                        
-
-                        System.out.printf("%-60s", " ");
-                        employeeAttendanceList.insert(attendance, employeeName);
-                        System.out.println("");
-                        
-                        long insertionTime = System.currentTimeMillis() - loginStartTime;
-                        System.out.printf("%-58s", " ");
-                        System.out.println("Time taken for insertion: " + insertionTime + " milliseconds");
-
-                        System.out.println("Updated Employee Attendance List:");
-                        System.out.println("");
-                        System.out.printf("%-60s", " ");
-                        employeeAttendanceList.show();
-                        
-                        System.out.println("");
-                        
-                        
-                    } else if (type.equals("Delete") || type.equals("delete") || type.equals("2")) {
-                        
-                        System.out.print("Enter the number of deletion: ");
-                        int deleteIndex = scanner.nextInt();
-                        scanner.nextLine();
-
-                        
-                        employeeAttendanceList.delete(deleteIndex - 1);
+                        System.out.println("Do you want to : ");
                         System.out.printf("%-50s", " ");
-                        System.out.println("Element of Number " + deleteIndex + " deleted.");
-                        System.out.println("");
-                        System.out.printf("%-58s", " ");
-                        System.out.println("Updated Employee Attendance List:");
-                        System.out.println("");
-                        System.out.printf("%-60s", " ");
-                        employeeAttendanceList.show();
-                        System.out.println("");
+                        System.out.println("1: Insert    2: Delete");
+                        System.out.printf("%-50s", " ");
+                        System.out.print("Select option:  ");
+                        String type = scanner.next();
+                        System.out.printf("%-50s", " ");
+
+                        if (!type.equals("1") && !type.equals("2")) {
+                            throw new IllegalArgumentException("Invalid selection. Please enter 1 or 2.");
+                        }
+
+                        if (type.equals("1")) {
+                            System.out.print("Insert employee ID : ");
+                            if (!scanner.hasNextInt()) {
+                                throw new InputMismatchException("Employee ID must be an integer value.");
+                            }
+                            int attendance = scanner.nextInt();
+                            scanner.nextLine();
+
+                            System.out.print("Enter employee name: ");
+                            if (scanner.hasNextInt()) {
+                                throw new InputMismatchException("Employee name cannot be an integer value.");
+                            }
+                            String employeeName = scanner.nextLine();
+
+                            System.out.printf("%-60s", " ");
+                            employeeAttendanceList.insert(attendance, employeeName);
+                            System.out.println("");
+
+                            long insertionTime = System.currentTimeMillis() - loginStartTime;
+
+                            System.out.printf("%-58s", " ");
+                            System.out.println("Updated Employee Attendance List:");
+                            System.out.println("");
+                            System.out.printf("%-60s", " ");
+                            employeeAttendanceList.show();
+
+                            System.out.println("");
+                            System.out.printf("%-50s", " ");
+                            System.out.println("Time taken for insertion: " + insertionTime + " milliseconds");
+
+                            System.out.println("");
+                        } else if (type.equals("2")) {
+                            System.out.print("Enter the number of deletion: ");
+                            if (!scanner.hasNextInt()) {
+                                throw new InputMismatchException("Deletion number must be an integer value.");
+                            }
+                            int deleteIndex = scanner.nextInt();
+                            scanner.nextLine();
+
+                            employeeAttendanceList.delete(deleteIndex - 1);
+                            System.out.printf("%-50s", " ");
+                            System.out.println("Element of Number " + deleteIndex + " deleted.");
+                            System.out.println("");
+                            System.out.printf("%-58s", " ");
+                            System.out.println("Updated Employee Attendance List:");
+                            System.out.println("");
+                            System.out.printf("%-60s", " ");
+                            employeeAttendanceList.show();
+                            System.out.println("");
+                        }
+                    } catch (IllegalArgumentException | InputMismatchException e) {
+                        System.out.printf("%-55s", " ");
+                        System.out.println("Error: " + e.getMessage());
+                        scanner.nextLine(); // Consume the invalid input
                     }
                 }
             } else {
@@ -262,6 +269,6 @@ public class PDSA1 {
                 System.out.println("Authentication failed. Incorrect username or password.");
             }
         }
-     scanner.close(); 
+        scanner.close();
     }
 }
