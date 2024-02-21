@@ -191,6 +191,7 @@ public class PDSA1 {
             if ((enteredUsername.equals(correctUsername1) && enteredPassword.equals(correctPassword1)) ||
                 (enteredUsername.equals(correctUsername2) && enteredPassword.equals(correctPassword2))) {
                 System.out.println("");
+                long loginStartTime = System.currentTimeMillis();
                 System.out.printf("%-55s", " ");
                 System.out.println("Authentication successful. Welcome, " + enteredUsername + "!");
                 System.out.println("");
@@ -224,7 +225,11 @@ public class PDSA1 {
                         System.out.printf("%-60s", " ");
                         employeeAttendanceList.insert(attendance, employeeName);
                         System.out.println("");
+                        
+                        long insertionTime = System.currentTimeMillis() - loginStartTime;
                         System.out.printf("%-58s", " ");
+                        System.out.println("Time taken for insertion: " + insertionTime + " milliseconds");
+
                         System.out.println("Updated Employee Attendance List:");
                         System.out.println("");
                         System.out.printf("%-60s", " ");
