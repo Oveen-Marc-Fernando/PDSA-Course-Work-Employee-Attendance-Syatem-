@@ -24,8 +24,7 @@ class Link {
 
     public void insert(int data, String name) throws DuplicateIdException{
         Node node = new Node(data, name);
-        
-         
+                 
         if (isIdAlreadyExists(data)) {
         throw new DuplicateIdException("Employee ID already exists. Please use a different ID.");
     }
@@ -50,12 +49,12 @@ class Link {
             
             if (current.data == id) {
                 return true;
-            }
-          current = current.next;
+                }
+            current = current.next;
         
-        }
-    return false;
-}
+           }
+        return false;
+    }
 
     public void show() {
         Node node = head;
@@ -150,8 +149,13 @@ class EmployeeDetails
 {
     public void show()
     {
-        String[] Employeenames = {"Kasun", "Nipun", "Aravinda", "Nethra", "Ayesh", "Savindu", "Nadith", "Saman", "Nohim", "Kisara", "Binura", "Gimras", "Rasindu", "Indika", "Nuwan", "Asindu", "Thiwanka", "Heshan", "Rashmika"};
-        int[] Idnumbers = {1001, 1002, 3003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020};
+        String[] Employeenames = {"Kasun", "Nipun", "Aravinda", "Nethra", "Ayesh", 
+                                  "Savindu", "Nadith", "Saman", "Nohim", "Kisara", 
+                                  "Binura", "Gimras", "Rasindu", "Indika", "Nuwan", 
+                                  "Asindu", "Thiwanka", "Heshan", "Rashmika"};
+        
+        int[] Idnumbers = {1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 
+                           1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020};
 
         System.out.printf("%-63s", " ");
         System.out.println("Employee Details ");
@@ -201,7 +205,7 @@ class AbsentEmployees {
                                       "Nohim", "Kisara", "Binura", "Gimras", "Rasindu", "Indika", "Nuwan", "Asindu", 
                                       "Thiwanka", "Heshan", "Rashmika"};
     
-    private final int[] predefinedEmployeeIds = {1001, 1002, 3003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 
+    private final int[] predefinedEmployeeIds = {1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 
                                             1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020};
 
     public void markAbsent(int employeeId) {
@@ -258,7 +262,7 @@ public class PDSA1 {
                     employee.show(); 
                     System.out.println("");
                     
-                    for (int p = 0; p < 2; p++) {
+                    for (int p = 0; p < 10; p++) {
                         try {
                             System.out.printf("%-50s", " ");
                             System.out.println("Do you want to : ");
