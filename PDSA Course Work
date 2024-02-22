@@ -20,9 +20,14 @@ class Node {
 class Link {
     Node head;
 
-    public void insert(int data, String name) {
+    public void insert(int data, String name) throws DuplicateIdException{
         Node node = new Node(data, name);
-
+  
+        
+        if (isIdAlreadyExists(data)) {
+        throw new DuplicateIdException("Employee ID already exists. Please use a different ID.");
+    }
+        
         if (head == null) {
             head = node;
         } else {
@@ -35,6 +40,17 @@ class Link {
             node.prev = last;
         }
     }
+    
+    private boolean isIdAlreadyExists(int id) {
+    Node current = head;
+    while (current != null) {
+        if (current.data == id) {
+            return true;
+        }
+        current = current.next;
+    }
+    return false;
+}
 
     public void show() {
         Node node = head;
@@ -87,13 +103,17 @@ class Link {
         }
     }
 
-    public void delete(int index) {
+    public void delete(int index)  throws DeletedIdException {
         if (head == null) {
-            System.out.println("List is empty");
-            return;
+            throw new DeletedIdException("List is empty");      
         }
 
         if (index == 0) {
+            
+            if (head == null) {
+            throw new DeletedIdException("Cannot delete. List is empty");
+        }
+            
             head = head.next;
             if (head != null) {
                 head.prev = null;
@@ -111,6 +131,7 @@ class Link {
                 if (current.next != null) {
                     current.next.prev = current.prev;
                 }
+                 System.out.printf("%-60s", " ");
                 System.out.println("Value deleted: " + current.data);
             }
         }
@@ -154,6 +175,18 @@ class Company{
     }
 }            
 
+class DuplicateIdException extends Exception {
+    public DuplicateIdException(String message) {
+        super(message);
+    }
+}
+
+class DeletedIdException extends Exception {
+    public DeletedIdException(String message) {
+        super(message);
+    }
+}
+
 public class PDSA1 {
     public static void main(String[] args) {
        
@@ -191,7 +224,7 @@ public class PDSA1 {
                 employee.show();
                 System.out.println("");               
 
-                for (int p = 0; p < 10; p++) {
+                for (int p = 0; p < 100; p++) {
                     try {
                         System.out.printf("%-50s", " ");
                         System.out.println("Do you want to : ");
@@ -201,14 +234,11 @@ public class PDSA1 {
                         System.out.print("Select option:  ");
                         
                         String type = scanner.nextLine();
-                        
-                         
+                                              
                             try { 
                                 if (!type.equals("1") && !type.equals("2")) {
                                     
-                                   throw new IllegalArgumentException("Invalid selection. Please enter 1 or 2."); 
-                                   
-                                   
+                                   throw new IllegalArgumentException("Invalid selection. Please enter 1 or 2.");                                                                   
                                 }
                                 
                             }                            
@@ -217,9 +247,7 @@ public class PDSA1 {
                                 
                                     throw new InputMismatchException("Invalid input. Please enter a number.");
                                     
-                            }
-                            
-                            
+                            }                                                       
                         
                         if (type.equals("1")) {
                             System.out.printf("%-50s", " ");
@@ -264,6 +292,9 @@ public class PDSA1 {
                         } 
                         
                         else if (type.equals("2")) {
+                            
+                            System.out.printf("%-50s", " ");
+                            
                             System.out.print("Enter the number of deletion: ");
                             
                             if (!scanner.hasNextInt()) {
@@ -284,12 +315,11 @@ public class PDSA1 {
                             employeeAttendanceList.show();
                             System.out.println("");
                         }
-                        
-                    } catch (IllegalArgumentException | InputMismatchException e) {
-                        System.out.printf("%-55s", " ");
-                        System.out.println("Error: " + e.getMessage());
-                        System.out.println("");
-                        scanner.nextLine();
+                          } catch (DuplicateIdException | DeletedIdException | IllegalArgumentException | InputMismatchException e) {
+                            System.out.printf("%-55s", " ");
+                            System.out.println("Error: " + e.getMessage());
+                            System.out.println("");
+                            scanner.nextLine();
                     }
                 }
             } 
