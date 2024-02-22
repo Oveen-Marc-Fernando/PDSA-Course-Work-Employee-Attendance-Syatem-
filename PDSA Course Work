@@ -212,18 +212,19 @@ public class PDSA1 {
                                     throw new InputMismatchException("Invalid input. Please enter a number.");
                             }
                             
-                        System.out.printf("%-50s", " ");
+                        /*System.out.printf("%-50s", " ");*/
                         
                         if (type.equals("1")) {
                             System.out.print("Enter employee ID : ");
                             if (!scanner.hasNextInt()) {
-                              
                                 throw new InputMismatchException("Employee ID must be an integer value. ");
                             }
                             
                             int attendance = scanner.nextInt();
-                            scanner.next();
-                            System.out.printf("%-50s", " ");
+                            scanner.nextLine();
+                            
+                           /* System.out.printf("%-50s", " ");*/
+                           
                             System.out.print("Enter employee name: ");
                             
                             if (scanner.hasNextInt()) {
@@ -279,6 +280,7 @@ public class PDSA1 {
                         System.out.printf("%-55s", " ");
                         System.out.println("Error: " + e.getMessage());
                         System.out.println("");
+                        scanner.nextLine();
                     }
                 }
             } 
