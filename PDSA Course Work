@@ -2,6 +2,8 @@ package pdsa1;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.HashSet; 
+import java.util.Set;
 
 class Node {
     int data;
@@ -22,11 +24,10 @@ class Link {
 
     public void insert(int data, String name) throws DuplicateIdException{
         Node node = new Node(data, name);
-  
-        
+         
         if (isIdAlreadyExists(data)) {
         throw new DuplicateIdException("Employee ID already exists. Please use a different ID.");
-    }
+    }fix this error
         
         if (head == null) {
             head = node;
@@ -42,13 +43,16 @@ class Link {
     }
     
     private boolean isIdAlreadyExists(int id) {
-    Node current = head;
-    while (current != null) {
-        if (current.data == id) {
-            return true;
+        Node current = head;
+        
+        while (current != null) {
+            
+            if (current.data == id) {
+                return true;
+            }
+          current = current.next;
+        
         }
-        current = current.next;
-    }
     return false;
 }
 
@@ -197,8 +201,11 @@ public class PDSA1 {
 
         Link employeeAttendanceList = new Link();
         Company company= new Company();
-        company.show();    
+        company.show();   
         
+                Set<Integer> insertedEmployeeIds = new HashSet<>();
+                       int[] predefinedEmployeeIds = {1001, 1002, 3003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020};
+        String[] employeeNames = {"Kasun", "Nipun", "Aravinda", "Nethra", "Ayesh", "Savindu", "Nadith", "Saman", "Nohim", "Kisara", "Binura", "Gimras", "Rasindu", "Indika", "Nuwan", "Asindu", "Thiwanka", "Heshan", "Rashmika"};
         for (int i = 0; i < 5; i++) {
             String correctUsername1 = "Oveen";
             String correctPassword1 = "tvbm9035";
@@ -272,7 +279,9 @@ public class PDSA1 {
                             }
                             
                             String employeeName = scanner.nextLine();
-                            
+                             
+                            employeeAttendanceList.insert(attendance, employeeName);
+                            insertedEmployeeIds.add(attendance); // Add the inserted ID to the set
                             
                             System.out.printf("%-60s", " ");
                             employeeAttendanceList.insert(attendance, employeeName);
@@ -325,12 +334,30 @@ public class PDSA1 {
                             scanner.nextLine();
                     }
                 }
+
+
+       
+                
             } 
             else {
                 System.out.printf("%-55s", " ");
                 System.out.println("Authentication failed. Incorrect username or password.");
             }
         }
+        
+        
+        System.out.println("Absent Employee IDs and Names:");
+
+        for (int predefinedId : predefinedEmployeeIds) {
+            if (!insertedEmployeeIds.contains(predefinedId)) {
+                System.out.printf("Employee ID: %d, Name: %s%n", predefinedId, employeeNames[predefinedId - 1000]);
+            }
+        }
+        
+        
         scanner.close();
+        
+        
     }
+    
 }
