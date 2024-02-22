@@ -199,31 +199,40 @@ public class PDSA1 {
                         System.out.println("1: Insert    2: Delete");
                         System.out.printf("%-50s", " ");
                         System.out.print("Select option:  ");
+                        
                         String type = scanner.nextLine();
+                        
                          
                             try { 
                                 if (!type.equals("1") && !type.equals("2")) {
                                     
-                                   throw new IllegalArgumentException("Invalid selection. Please enter 1 or 2.");                           
+                                   throw new IllegalArgumentException("Invalid selection. Please enter 1 or 2."); 
+                                   
+                                   
                                 }
+                                
                             }                            
-                         
+                            
                             catch(NumberFormatException e) {
+                                
                                     throw new InputMismatchException("Invalid input. Please enter a number.");
+                                    
                             }
                             
-                        /*System.out.printf("%-50s", " ");*/
+                            
                         
                         if (type.equals("1")) {
+                            System.out.printf("%-50s", " ");
                             System.out.print("Enter employee ID : ");
                             if (!scanner.hasNextInt()) {
                                 throw new InputMismatchException("Employee ID must be an integer value. ");
                             }
                             
+                            
                             int attendance = scanner.nextInt();
                             scanner.nextLine();
                             
-                           /* System.out.printf("%-50s", " ");*/
+                           System.out.printf("%-50s", " ");
                            
                             System.out.print("Enter employee name: ");
                             
