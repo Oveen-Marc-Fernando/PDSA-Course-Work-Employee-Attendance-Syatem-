@@ -305,9 +305,7 @@ public class PDSA1 {
                                 }
                                 
                                 String employeeName = scanner.nextLine();
-                                
-                                
-                                System.out.printf("%-60s", " ");
+                                                            
                                 employeeAttendanceList.insert(attendance, employeeName);
                                 System.out.println("");
                                 
@@ -350,6 +348,7 @@ public class PDSA1 {
                                 System.out.printf("%-60s", " ");
                                 employeeAttendanceList.show();
                                 System.out.println("");
+                                
                             }
                             
                         } catch (DuplicateIdException | DeletedIdException | IllegalArgumentException | InputMismatchException e) {
@@ -359,6 +358,7 @@ public class PDSA1 {
                             scanner.nextLine();
                         }
                     }
+
                     System.out.printf("%-58s", " ");
                     System.out.println("Absent Employee IDs and Names:");
                     System.out.println("");
