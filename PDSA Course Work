@@ -103,39 +103,42 @@ class Link {
         }
     }
 
-    public void delete(int index)  throws DeletedIdException {
+    public void delete(int index) throws DeletedIdException {
         if (head == null) {
-            throw new DeletedIdException("List is empty");      
-        }
-
-        if (index == 0) {
-            
-            if (head == null) {
-            throw new DeletedIdException("Cannot delete. List is empty");
-        }
-            
-            head = head.next;
-            if (head != null) {
-                head.prev = null;
-            }
-        } else {
-            Node current = head;
-            for (int i = 0; i < index && current != null; i++) {
-                current = current.next;
+              throw new DeletedIdException("List is empty");
             }
 
-            if (current != null) {
-                if (current.prev != null) {
-                    current.prev.next = current.next;
-                }
+         if (index < 0) {
+              throw new DeletedIdException("Invalid index. Index must be non-negative.");
+            }
+
+                 Node current = head;
+                 int count = 0;
+                 
+            while (current != null && count < index) {
+            current = current.next;
+            count++;
+        }
+
+        if (current == null) {
+          throw new DeletedIdException("Employee ID not found. Cannot delete.");
+        }
+
+             if (current.prev != null) {
+                current.prev.next = current.next;
+            } 
+        
+            else {
+                head = current.next;
+            }
+
                 if (current.next != null) {
-                    current.next.prev = current.prev;
+                     current.next.prev = current.prev;
+                    }
+
+                    System.out.printf("%-60s", " ");
+                    System.out.println("Value deleted: " + current.data);
                 }
-                 System.out.printf("%-60s", " ");
-                System.out.println("Value deleted: " + current.data);
-            }
-        }
-    }
 }
 
 class EmployeeDetails
