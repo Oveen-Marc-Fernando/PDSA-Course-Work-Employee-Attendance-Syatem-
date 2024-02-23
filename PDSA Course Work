@@ -27,7 +27,7 @@ class Link {
                  
         if (isIdAlreadyExists(data)) {
         throw new DuplicateIdException("Employee ID already exists. Please use a different ID.");
-    } compre the eployeelist with upated list and dispaly the employess who is absent
+    }
         
         if (head == null) {
             head = node;
@@ -262,7 +262,7 @@ public class PDSA1 {
                     employee.show(); 
                     System.out.println("");
                     
-                    for (int p = 0; p < 10; p++) {
+                    for (int p = 0; p < 12; p++) {
                         try {
                             System.out.printf("%-50s", " ");
                             System.out.println("Do you want to : ");
@@ -305,9 +305,7 @@ public class PDSA1 {
                                 }
                                 
                                 String employeeName = scanner.nextLine();
-                                
-                                
-                                System.out.printf("%-60s", " ");
+                                                            
                                 employeeAttendanceList.insert(attendance, employeeName);
                                 System.out.println("");
                                 
@@ -350,6 +348,7 @@ public class PDSA1 {
                                 System.out.printf("%-60s", " ");
                                 employeeAttendanceList.show();
                                 System.out.println("");
+                                
                             }
                             
                         } catch (DuplicateIdException | DeletedIdException | IllegalArgumentException | InputMismatchException e) {
